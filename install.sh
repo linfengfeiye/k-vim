@@ -41,7 +41,7 @@ export SHELL=$system_shell
 echo "Step5: compile YouCompleteMe"
 echo "It will take a long time, juse be patient!"
 echo "If error,you need to compile it yourself"
-echo "cd $CURRENT_DIR/bundle/YouCompleteMe/ && bash -x install.sh --clang-completer"
+echo "cd $CURRENT_DIR/bundle/YouCompleteMe/ && bash -x install.sh --clang-completer --system-libclang"
 cd $CURRENT_DIR/bundle/YouCompleteMe/
 bash -x install.sh --clang-completer --system-libclang
 
