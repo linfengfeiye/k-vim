@@ -43,7 +43,7 @@ echo "It will take a long time, juse be patient!"
 echo "If error,you need to compile it yourself"
 echo "cd $CURRENT_DIR/bundle/YouCompleteMe/ && bash -x install.sh --clang-completer"
 cd $CURRENT_DIR/bundle/YouCompleteMe/
-bash -x install.sh --clang-completer
+bash -x install.sh --clang-completer --system-libclang
 
 #vim bk and undo dir
 if [ ! -d /tmp/vimbk ]

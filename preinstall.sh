@@ -11,8 +11,42 @@ then
     exit 1
 fi    
 
-rm -rf ./build_temp
-mkdir build_temp
+cmake=`rpm -qa|grep cmake`
+if [[ "cmake" = "" ]]
+then
+    release='cat /etc/redhat-release|sed -n "s#.*release \([0-9]\).\([0-9]\) .*#\1#p"'
+    if [[ $release -eq 5 ]]
+    then
+        bit=`uname -m`
+	if [[ $bit = "x86_64" ]]
+        then
+            wget ftp://195.220.108.108/linux/centos/5.10/os/x86_64/CentOS/cmake-2.6.4-5.el5.4.x86_64.rpm
+	    rpm -Uvh cmake-2.6.4-5.el5.4.x86_64.rpm
+	else
+	    wget ftp://195.220.108.108/linux/centos/5.10/os/i386/CentOS/cmake-2.6.4-5.el5.4.i386.rpm
+	    rpm -Uvh cmake-2.6.4-5.el5.4.i386.rpm
+	fi
+    elif [[ $release -eq 6 ]]
+    then
+	bit=`uname -m`
+        if [[ $bit = "x85_64" ]]
+        then
+	    wget ftp://195.220.108.108/linux/centos/6.5/os/x86_64/Packages/cmake-2.6.4-5.el6.x86_64.rpm
+	    rpm -Uvh cmake-2.6.4-5.el6.x86_64.rpm
+	else
+ 	    wget ftp://195.220.108.108/linux/centos/6.5/os/i386/Packages/cmake-2.6.4-5.el6.i686.rpm
+	    rpm -Uvh cmake-2.6.4-5.el6.i686.rpm
+	fi
+    else
+	echo "not support system"
+        exit 1
+    fi
+fi
+
+if [[ ! -d build_temp ]]
+then
+    mkdir build_temp
+fi
 cd build_temp
 
 #download vim 7.4 and install vim 7.4
